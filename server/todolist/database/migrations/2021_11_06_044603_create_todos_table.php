@@ -16,7 +16,7 @@ class CreateTodosTable extends Migration
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->text('body');
-            $table->boolean('completed');
+            $table->boolean('completed')->default(false);
             $table->datetime('created_at')->useCurrent();
             $table->datetime('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
