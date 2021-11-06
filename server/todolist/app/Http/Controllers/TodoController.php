@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TodoController extends Controller
 {
@@ -84,6 +85,7 @@ class TodoController extends Controller
      */
     public function destroy(todo $todo)
     {
-        //
+        $todo->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
