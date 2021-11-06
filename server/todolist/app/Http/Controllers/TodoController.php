@@ -72,7 +72,8 @@ class TodoController extends Controller
      */
     public function update(Request $request, todo $todo)
     {
-        //
+        $todo->update($request->all());
+        return response()->json($todo);
     }
 
     /**
