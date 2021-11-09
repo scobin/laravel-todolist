@@ -19,6 +19,13 @@
             <div>
                 <!-- 1. title -->
                 <h2>My Todo List</h2>
+                <!-- 3. "add todo" form-->
+                <form action="{{ route('todo.store') }}" method="post">
+                @csrf
+                    <input type="text" name="todo_body" id="todo_body"
+                    placeholder="Enter your task">
+                    <input type="submit" value="+">
+                </form>
                 <!-- 2. todo list -->
                 <ul>
                     @foreach ($todos as $key => $todo)
@@ -29,7 +36,6 @@
                         </li>
                     @endforeach
                 </ul>
-                <!-- 3. "add todo" form-->
             </div>
     </body>
 </html>

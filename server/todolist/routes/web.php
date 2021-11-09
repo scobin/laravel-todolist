@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Todo;
+use Illuminate\Http\Request;
+use App\Http\Controllers\TodoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,14 @@ use App\Models\Todo;
 |
 */
 
-Route::get('/', function () {
-    $todos = Todo::orderBy('created_at', 'DESC')->get();
-    return view('welcome', ['todos' => $todos]);
-});
+// Route::get('/', function () {
+//     $todos = Todo::orderBy('created_at', 'DESC')->get();
+//     return view('welcome', ['todos' => $todos]);
+// })->name('todos.index');
+Route::get('/', [TodoController::class, 'list'])->name('todos.index');
+Route::post('/todo', function(Request $request) {
+    $newTodo = new Todo();
+    $newTodo->body = $request->todo_body;
+    $newTodo->save();
+    return redirect()->route('todos.index');
+})->name('todo.store');

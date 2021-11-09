@@ -18,6 +18,12 @@ class TodoController extends Controller
         return response()->json(Todo::orderBy('created_at', 'DESC')->get());
     }
 
+    public function list()
+    {
+        $todos = Todo::orderBy('created_at', 'DESC')->get();
+        return view('welcome', ['todos' => $todos]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
