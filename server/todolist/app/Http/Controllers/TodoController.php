@@ -45,7 +45,7 @@ class TodoController extends Controller
         $newTodo = new Todo();
         $newTodo->body = $request->body;
         $newTodo->save();
-        return response()->json($newTodo);
+        return response($newTodo, Response::HTTP_CREATED);
     }
 
     /**
