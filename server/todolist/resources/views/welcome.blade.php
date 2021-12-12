@@ -14,9 +14,10 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+        <link rel="stylesheet" href="{{ mix('css/bs.css') }}">
     </head>
     <body class="antialiased">
-        <div id="app">
+        <div id="app" class="container">
             <v-todo-list></v-todo-list>
         </div>
     </body>
