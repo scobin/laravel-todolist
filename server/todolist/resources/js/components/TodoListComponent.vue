@@ -1,18 +1,25 @@
 <template>
-    <div>
-        <h2>My Todo List Component</h2>
-        <div>
-            <input type="text" v-model="newTodo.body" placeholder="Enter new task">
-            <button @click="addTodo">+</button>
+    <div class="pt-5">
+        <h2><i class="bi bi-list-task pe-1"></i>My Todo List Component</h2>
+        <div class="row p-4">
+            <input class="col" type="text" v-model="newTodo.body" placeholder="Enter new task">
+            <button class="col-auto btn btn-primary mx-1" @click="addTodo">+</button>
         </div>
-        <ul>
-            <li v-for="(todo, index) in todos" :key="index">
-                <label :for="`todo-${index}`">
+        <ul class="list-group">
+            <li v-for="(todo, index) in todos" :key="index"
+                class="list-group-item d-flex align-items-center">
+                <div class="form-check m-auto">
+                    <input class="form-check-input"
+                    type="checkbox"
+                    :id="`todo-${index}`"
+                    :checked="todo.completed"
+                    @change="completed(todo)">
+                </div>
+                <label :for="`todo-${index}`" class="flex-fill">
                     <span :class="[todo.completed ? 'line-through' : '']" >{{ todo.body }}</span>
                 </label>
                 <div>
-                    <button @click="completed(todo)"> O </button>
-                    <button @click="deleteTodo(todo)"> - </button>
+                    <button class="border-0 btn btn-outline-danger" @click="deleteTodo(todo)"><i class="bi bi-trash"></i></button>
                 </div>
             </li>
         </ul>
