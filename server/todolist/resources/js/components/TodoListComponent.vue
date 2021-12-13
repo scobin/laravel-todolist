@@ -5,8 +5,8 @@
             <input class="col" type="text" v-model="newTodo.body" placeholder="Enter new task">
             <button class="col-auto btn btn-primary mx-1" @click="addTodo">+</button>
         </div>
-        <ul class="list-group">
-            <li v-for="(todo, index) in todos" :key="index"
+        <transition-group name="list" tag="ul" class="list-group">
+            <li v-for="(todo, index) in todos" :key="todo"
                 class="list-group-item d-flex align-items-center">
                 <div class="form-check m-auto">
                     <input class="form-check-input"
@@ -22,12 +22,24 @@
                     <button class="border-0 btn btn-outline-danger" @click="deleteTodo(todo)"><i class="bi bi-trash"></i></button>
                 </div>
             </li>
-        </ul>
+        </transition-group>
     </div>
 </template>
 <style>
     .line-through {
         text-decoration: line-through;
+    }
+    .list-enter-active,
+    .list-leave-active {
+        transition: all 1s ease;
+    }
+    .list-enter-from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    .list-leave-to {
+        opacity: 0;
+        transform: translateX(-300px);
     }
 </style>
 <script>
